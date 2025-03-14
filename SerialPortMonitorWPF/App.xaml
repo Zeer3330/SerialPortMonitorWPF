@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application x:Class="SerialPortMonitorWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/MainWindow.xaml">
+    <!-- 应用程序的全局资源，可用于定义样式、模板等 -->
+    <Application.Resources>
+        <!-- 这里可添加全局样式、模板等资源 -->
+    </Application.Resources>
+</Application>    
