@@ -5,21 +5,22 @@
 2. [技术要点](#技术要点)
     - [WPF 框架](#wpf-框架)
     - [串口通信](#串口通信)
-    - [数据绑定与 MVVM 模式](#数据绑定与-mvvm-模式)
     - [SkiaSharp 与 LiveChartsCore 绘图](#skiasharp-与-livechartscore-绘图)
     - [编码与文本处理](#编码与文本处理)
     - [异步编程支持](#异步编程支持)
 3. [项目依赖](#项目依赖)
-4. [使用说明](#使用说明)
-5. [贡献与反馈](#贡献与反馈)
+4. [安装步骤](#安装步骤)
+5. [使用说明](#使用说明)
+6. [注意事项](#注意事项)
+7. [贡献与反馈](#贡献与反馈)
 
 ## 项目概述
-SerialPortMonitorWPF 是一个基于 WPF（Windows Presentation Foundation）的应用程序，用于监控和管理串口通信。该项目允许用户配置串口参数，如波特率、数据位、停止位和奇偶校验等，并通过串口发送和接收数据。
+SerialPortMonitorWPF 是一个基于 WPF（Windows Presentation Foundation）的应用程序，用于监控和管理串口通信。该项目允许用户配置串口参数，如波特率、数据位、停止位和奇偶校验等，并通过串口发送和接收数据。同时，使用 LiveChartsCore 进行数据可视化，为用户提供直观的数据分析体验。
 
 ## 技术要点
 
-### WPF 框架
-- **XAML 与代码分离**：项目使用 XAML（eXtensible Application Markup Language）来定义用户界面，而业务逻辑则在 C# 代码中实现。例如，`App.xaml.cs` 文件负责应用程序的全局初始化和清理逻辑，而 `Views/MainWindow.xaml.cs` 则处理主窗口的交互逻辑。
+### WPF 设计
+- **XAML 与代码分离**：项目使用 XAML（eXtensible Application Markup Language）来定义用户界面，而业务逻辑则在 C# 代码中实现。例如，`App.xaml.cs` 文件负责应用程序的全局初始化和清理逻辑，而 `Views/MainWindow.xaml.cs` 则处理主窗口的交互逻辑。这种分离方式使得代码结构清晰，易于维护和扩展。
 ```csharp
 // App.xaml.cs 中的全局初始化逻辑
 protected override void OnStartup(StartupEventArgs e)
@@ -28,9 +29,8 @@ protected override void OnStartup(StartupEventArgs e)
     LiveCharts.Configure(config => config.HasGlobalSKTypeface(SKFontManager.Default.MatchCharacter('汉')));
 }
 ```
-- **布局与控件**：使用 WPF 提供的各种控件，如 ComboBox、Button 和 TextBox 等，构建用户界面。通过布局管理器（如 Grid、StackPanel 等）来安排控件的位置和大小。这种布局方式使得界面设计灵活，能够适应不同的需求。
-
-- **带背景文字的输入框** 根据textbox.text属性的值自动为输入框添加背景，实现输入框中无数据时带背景文字，有数据时自动隐藏。
+- **控件与布局**：使用 WPF 提供的各种控件，如 `ComboBox`、`Button` 和 `TextBox` 等，构建用户界面。通过布局管理器（如 `Grid`、`StackPanel` 等）来安排控件的位置和大小。这种布局方式使得界面设计灵活，能够适应不同的需求。
+-- **带背景文字的输入框** :根据textbox.text属性的值自动为输入框添加背景，实现输入框中无数据时带背景文字，有数据时自动隐藏。
 ```csharp
  <TextBox x:Name="SendTextBox" Height="40" Margin="10">
                     <TextBox.Resources>
@@ -51,44 +51,6 @@ protected override void OnStartup(StartupEventArgs e)
                     </TextBox.Style>
                     </TextBox>
 ```
-
-### 串口通信
-- **System.IO.Ports 命名空间**：项目使用 `System.IO.Ports` 命名空间中的 `SerialPort` 类来实现串口通信。在 `Views/MainWindow.xaml.cs` 文件中，通过 `SerialPort.GetPortNames()` 方法获取可用的串口列表，并允许用户选择和配置串口参数。
-
-结合博客内容和现有代码库信息，对 README 文档进行如下优化，进一步突出项目技术栈、使用方法和学习过程，同时增加了一些实用的部分，如安装步骤和注意事项：
-
-# SerialPortMonitorWPF
-
-## 目录
-1. [项目概述](#项目概述)
-2. [技术要点](#技术要点)
-    - [WPF 框架](#wpf-框架)
-    - [串口通信](#串口通信)
-    - [SkiaSharp 与 LiveChartsCore 绘图](#skiasharp-与-livechartscore-绘图)
-    - [编码与文本处理](#编码与文本处理)
-    - [异步编程支持](#异步编程支持)
-3. [项目依赖](#项目依赖)
-4. [安装步骤](#安装步骤)
-5. [使用说明](#使用说明)
-6. [注意事项](#注意事项)
-7. [贡献与反馈](#贡献与反馈)
-
-## 项目概述
-SerialPortMonitorWPF 是一个基于 WPF（Windows Presentation Foundation）的应用程序，用于监控和管理串口通信。该项目允许用户配置串口参数，如波特率、数据位、停止位和奇偶校验等，并通过串口发送和接收数据。同时，使用 LiveChartsCore 进行数据可视化，为用户提供直观的数据分析体验。
-
-## 技术要点
-
-### WPF 框架
-- **XAML 与代码分离**：项目使用 XAML（eXtensible Application Markup Language）来定义用户界面，而业务逻辑则在 C# 代码中实现。例如，`App.xaml.cs` 文件负责应用程序的全局初始化和清理逻辑，而 `Views/MainWindow.xaml.cs` 则处理主窗口的交互逻辑。这种分离方式使得代码结构清晰，易于维护和扩展。
-```csharp
-// App.xaml.cs 中的全局初始化逻辑
-protected override void OnStartup(StartupEventArgs e)
-{
-    base.OnStartup(e);
-    LiveCharts.Configure(config => config.HasGlobalSKTypeface(SKFontManager.Default.MatchCharacter('汉')));
-}
-```
-- **控件与布局**：使用 WPF 提供的各种控件，如 `ComboBox`、`Button` 和 `TextBox` 等，构建用户界面。通过布局管理器（如 `Grid`、`StackPanel` 等）来安排控件的位置和大小。这种布局方式使得界面设计灵活，能够适应不同的需求。
 - **数据绑定**：WPF 支持数据绑定，通过将视图（View）与视图模型（ViewModel）绑定，可以实现数据的自动更新和交互。在 `Views/MainWindow.xaml.cs` 中，通过 `DataContext` 属性将主窗口的视图模型 `MainWindowViewModel` 绑定到视图上。
 ```csharp
 // 绑定视图模型
