@@ -8,6 +8,7 @@
     - [SkiaSharp 与 LiveChartsCore 绘图](#skiasharp-与-livechartscore-绘图)
     - [编码与文本处理](#编码与文本处理)
     - [异步编程支持](#异步编程支持)
+    - [MySQL 数据库集成](#MySQL 数据库集成)
 3. [项目依赖](#项目依赖)
 4. [安装步骤](#安装步骤)
 5. [使用说明](#使用说明)
