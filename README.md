@@ -8,7 +8,7 @@
     - [SkiaSharp 与 LiveChartsCore 绘图](#skiasharp-与-livechartscore-绘图)
     - [编码与文本处理](#编码与文本处理)
     - [异步编程支持](#异步编程支持)
-    - [MySQL 数据库集成](#MySQL 数据库集成)
+    - [MySQL数据库集成](#MySQL数据库集成)
 3. [项目依赖](#项目依赖)
 4. [安装步骤](#安装步骤)
 5. [使用说明](#使用说明)
@@ -99,7 +99,7 @@ private void RefreshSerialPorts()
 
 ### 异步编程支持
 - **System.Threading.Tasks 命名空间**：项目使用 `System.Threading.Tasks` 命名空间中的类来实现异步编程，提高应用程序的响应性能。例如，在串口通信中，可以使用异步方法来发送和接收数据，避免阻塞主线程。异步编程能够提高程序的并发处理能力，提升用户体验。[System.Threading.Tasks 官方文档](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks?view=net-8.0)
-### MySQL 数据库集成
+### MySQL数据库集成
 -**数据持久化存储**：项目通过集成 MySQL 数据库，实现串口通信数据的持久化存储。使用 Entity Framework Core（EF Core）作为 ORM 框架，简化数据库操作。
 ```csharp
 // 数据库上下文示例
