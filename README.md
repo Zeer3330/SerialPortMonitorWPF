@@ -16,16 +16,30 @@
 7. [贡献与反馈](#贡献与反馈)
 
 ## 项目概述与展示
+
+## 项目概述
 SerialPortMonitorWPF 是一个基于 WPF（Windows Presentation Foundation）的应用程序，用于监控和管理串口通信。该项目允许用户配置串口参数，如波特率、数据位、停止位和奇偶校验等，并通过串口发送和接收数据。同时，使用 LiveChartsCore 进行数据可视化，为用户提供直观的数据分析体验。
-- **UI界面**：![屏幕截图 2025-03-15 022200](https://github.com/user-attachments/assets/f24eee14-8111-487a-b6a5-ff9ae379262f)
+
+## 项目展示
+
+- **UI界面**：
+- ![屏幕截图 2025-03-15 022200](https://github.com/user-attachments/assets/f24eee14-8111-487a-b6a5-ff9ae379262f)
 - **虚拟串口配置**：
+
 - VSPD：
 - ![屏幕截图 2025-03-15 022404](https://github.com/user-attachments/assets/bddc8216-4322-457b-a91f-25ef21413652)
+
 - UartAssist：
 - ![屏幕截图 2025-03-15 022414](https://github.com/user-attachments/assets/f090c8f5-ae4f-43db-8863-4a376444440b)
-- **串口数据发送**：![屏幕截图 2025-03-15 022515](https://github.com/user-attachments/assets/620d94bf-ac54-4118-8a26-0a19b60b95a6)
-- **串口数据接收**：![屏幕截图 2025-03-15 022802](https://github.com/user-attachments/assets/d864e2ec-34bd-442a-874c-c347814c3198)
-- **MySQL数据库**：![屏幕截图 2025-03-15 022837](https://github.com/user-attachments/assets/9929faf5-03df-47f7-a5b5-427417b0c531)
+
+- **串口数据发送**：
+- ![屏幕截图 2025-03-15 022515](https://github.com/user-attachments/assets/620d94bf-ac54-4118-8a26-0a19b60b95a6)
+
+- **串口数据接收并绘图**：
+- ![屏幕截图 2025-03-15 022802](https://github.com/user-attachments/assets/d864e2ec-34bd-442a-874c-c347814c3198)
+
+- **MySQL数据库**：
+- ![屏幕截图 2025-03-15 022837](https://github.com/user-attachments/assets/9929faf5-03df-47f7-a5b5-427417b0c531)
 
 
 ## 技术要点
