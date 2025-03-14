@@ -98,6 +98,54 @@ private void RefreshSerialPorts()
 
 ### 异步编程支持
 - **System.Threading.Tasks 命名空间**：项目使用 `System.Threading.Tasks` 命名空间中的类来实现异步编程，提高应用程序的响应性能。例如，在串口通信中，可以使用异步方法来发送和接收数据，避免阻塞主线程。异步编程能够提高程序的并发处理能力，提升用户体验。[System.Threading.Tasks 官方文档](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks?view=net-8.0)
+### MySQL 数据库集成
+-**数据持久化存储**：项目通过集成 MySQL 数据库，实现串口通信数据的持久化存储。使用 Entity Framework Core（EF Core）作为 ORM 框架，简化数据库操作。
+```csharp
+// 数据库上下文示例
+public class SerialPortDbContext : DbContext
+{
+    public DbSet<ReceivedData> ReceivedData { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseMySQL("Server=localhost;Database=serial_port;Uid=root;Pwd=password;");
+    }
+}
+```
+
+异步数据操作：结合 async/await 模式实现数据库操作的非阻塞执行，确保 UI 线程流畅。
+```csharp
+// 异步保存接收数据
+public async Task SaveDataAsync(ReceivedData data)
+{
+    using var context = new SerialPortDbContext();
+    await context.ReceivedData.AddAsync(data);
+    await context.SaveChangesAsync();
+}
+```
+数据模型设计：通过实体类映射数据库表，支持复杂查询与数据聚合。
+```csharp
+// 数据实体示例
+public class ReceivedData
+{
+    public int Id { get; set; }
+    public string Content { get; set; }
+    public DateTime Timestamp { get; set; } = DateTime.Now;
+    public string PortName { get; set; }
+}
+```
+数据库迁移管理：使用 EF Core 迁移工具实现数据库版本控制，支持多环境部署。
+```bash
+# 控制台命令示例
+Add-Migration InitialCreate
+Update-Database
+```
+技术优势
+扩展性：MySQL 支持高并发场景，适合未来扩展为多设备数据监控平台
+可视化分析：结合 LiveChartsCore 可直接从数据库读取历史数据进行图表展示
+跨平台兼容性：通过 Pomelo.EntityFrameworkCore.MySql 驱动支持 Linux/macOS 环境
+
+
 
 ## 项目依赖
 项目使用了多个 NuGet 包，以下是部分重要的依赖项：
@@ -106,6 +154,9 @@ private void RefreshSerialPorts()
 - `LiveChartsCore.SkiaSharpView`：用于数据可视化。
 - `System.Text.Json`：用于 JSON 数据的序列化和反序列化。
 - `Microsoft.Extensions.Logging.Abstractions`：用于日志记录。
+- `Microsoft.EntityFrameworkCore：ORM`核心库
+- `Pomelo.EntityFrameworkCore.MySql：MySQL` 数据库提供程序
+- `System.Data.SqlClient`：数据库连接工具（可选，用于混合数据库支持）
 
 ## 安装步骤
 1. **克隆项目**：打开命令行工具，运行以下命令克隆项目到本地。
